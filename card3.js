@@ -105,6 +105,7 @@ async function recargar() {
       card1.actualizaSaldo(trx);
       // msj2.style.display = 'none';
       msj2.innerHTML = '';
+      montotrx.value = '';
     }).catch((e) => {
       // msj2.style.display = 'block';
       msj2.innerHTML = 'Transacción no confirmada, no se registró la recarga.';
@@ -121,6 +122,7 @@ async function consumir() {
       await contractCall('consumo', [card1.idcard, trx], 0).then(() => {
         card1.actualizaSaldo(trx*-1);
         msj2.innerHTML = '';
+        montotrx.value = '';
       }).catch((e) => {
         msj2.innerHTML = 'Transacción no confirmada, no se registró el consumo.';
       });
