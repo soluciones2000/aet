@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Card</title>
+	<link rel="stylesheet" href="card2.css">
+	<script src="./clase.js"></script>
+	<script src="./generacard.js"></script>
+	<script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script>
+	<script src="./card3.js"></script>
+</head>
+<body onload="inicio()">
+	<div class="container">
+		<div id="comienzo" class="parrafo">
+			<div class="parrafo_centrado">
+				<div id="recarganueva" style="padding: 0.5em 0; width: 80%; margin: auto;">
+					<div style="display: inline-flex; width: 100%; padding: 0px 0 5px 5%; text-align: left;">
+						<span style="width: 20%; text-align: left;">Tarjeta</span>
+						<input id="numero" type="text" size="16" maxlength="16" style="margin-left: 10%;" onchange="validanumerocard(this, this.value)" />
+					</div>
+					<div style="display: inline-flex; width: 100%; padding: 5px 0 5px 5%; text-align: left;">
+						<span style="width: 20%; text-align: left;">Nombre</span>
+						<input id="nombre" type="text"  size="16" maxlength="50" style="margin-left: 10%;" onchange="validanombre(this, this.value)" />
+					</div>
+					<div style="display: inline-flex; width: 100%; padding: 5px 0 5px 5%; text-align: left;">
+						<span style="width: 20%; text-align: left;">Monto</span>
+						<input id="monto" type="text"  size="16" maxlength="12" style="text-align: right;margin-left: 10%;" onchange="validamonto(this, this.value)" />
+					</div>
+					<div style="padding: 0.5em 0 0;">
+						<button onclick="gencard()">Generar nueva tarjeta</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span id="msj1" style="display: block; text-align: center;"></span>
+		<div id="tarjeta" style="display: none;">
+		</div>
+		<div id="movimientos" class="parrafo2" style="display: none;">		
+			<div class="parrafo_centrado2">
+				<div style="padding: 0.5em 0; width: 80%; margin: auto;">
+					<h4 style="width: 100%; text-align: center;">REGISTRO DE TRANSACCIONES</h4>
+					<div style="display: inline-flex; width: 100%; padding: 0px 0 5px 5%; text-align: left;">
+						<span style="width: 20%; text-align: left;">Monto</span>
+						<input id="montotrx" type="text"  size="16" maxlength="12" style="text-align: right; margin-left: 10%;" onchange="validamonto(this, this.value)" />
+					</div>
+					<div style="padding: 0.5em 0 0;">
+						<button onclick="recargar()">Recargar</button>
+						<button onclick="consumir()">Consumir</button>
+					</div>
+				</div>
+			</div>
+		<span id="msj2" style="display: block; text-align: center;"></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function validanumerocard(cmp, num) {
+			lret = true;
+			if (num!="") {
+				txt = num;
+				cadena = "0123456789"
+				valid = 0;
+				for (index = 0; index < txt.length; index++) valid += (cadena.search(txt[index]) >= 0) ? 0 : 1;
+				if (valid>0) {
+					alert('Este campo sólo debe contener numeros.');
+					msj1.innerHTML = 'El campo tarjeta sólo debe contener numeros.';
+					cmp.value = '';
+					cmp.focus();
+					lret = false;
+				} else {
+					msj1.innerHTML = '';
+				}
+			} else {
+				alert('Este campo no se puede dejar en blanco.');
+				msj1.innerHTML = 'El campo tarjeta no se puede dejar en blanco.';
+				cmp.value = '';
+				cmp.focus();
+				lret = false;
+			}
+			return lret;
+		}
+
+		function validanombre(cmp, nom) {
+			lret = true;
+			if (nom!="") {
+				txt = nom;
+				cadena = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789ÁÉÍÓÚ"
+				valid = 0;
+				console.log()
+				for (index = 0; index < txt.length; index++) valid += (cadena.search(txt[index].toUpperCase()) >= 0) ? 0 : 1;
+				if (valid>0) {
+					alert('Este campo sólo debe contener letras o números sin caracteres especiales.');
+					cmp.value = '';
+					cmp.focus();
+					lret = false;
+					msj1.innerHTML = 'El campo nombre sólo debe contener letras o números sin caracteres especiales.';
+				} else {
+					msj1.innerHTML = '';
+				}
+			} else {
+				alert('Este campo no se puede dejar en blanco.');
+				msj1.innerHTML = 'El campo nombre no se puede dejar en blanco.';
+				cmp.value = '';
+				cmp.focus();
+				lret = false;
+			}
+			return lret;
+		}
+
+		function validamonto(cmp, mnt) {
+			lret = true;
+			if (mnt!="") {
+				txt = mnt;
+				cadena = "0123456789."
+				valid = 0;
+				punto = 0;
+				for (index = 0; index < txt.length; index++) {
+ 					valid += (cadena.search(txt[index]) >= 0) ? 0 : 1;
+					if (txt[index] == ".") punto++;
+ 				}
+				if (valid>0) {
+					alert('Este campo sólo debe contener numeros y/o un punto decimal (.)');
+					cmp.value = '';
+					cmp.focus();
+					lret = false;
+					msj1.innerHTML = 'El campo monto sólo debe contener numeros y/o un punto decimal (.)';
+					msj2.innerHTML = 'El campo monto sólo debe contener numeros y/o un punto decimal (.)';
+				} else {
+					if (punto>1) {
+						alert('Número mal escrito, sólo puede haber un sólo punto decimal (.)');
+						cmp.value = '';
+						cmp.focus();
+						lret = false;
+						msj1.innerHTML = 'Número mal escrito, sólo puede haber un sólo punto decimal (.)';
+						msj2.innerHTML = 'Número mal escrito, sólo puede haber un sólo punto decimal (.)';
+					} else {
+						msj1.innerHTML = '';
+						msj2.innerHTML = '';
+					}
+				}
+			} else {
+				alert('Este campo no se puede dejar en blanco.');
+				msj1.innerHTML = 'El campo monto no se puede dejar en blanco.';
+				cmp.value = '';
+				cmp.focus();
+				lret = false;
+			}
+			return lret;
+		}
+
+		function gencard() {
+			if(validanumerocard(numero, numero.value) && validanombre(nombre, nombre.value) && validamonto(monto, monto.value)) {
+				cardnew(numero.value,nombre.value,monto.value)
+			}
+		}
+	</script>
+</body>
+</html>
