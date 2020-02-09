@@ -84,7 +84,7 @@
 			lret = true;
 			if (nom!="") {
 				txt = nom;
-				cadena = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789ÁÉÍÓÚ"
+				cadena = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789ÁÉÍÓÚ"
 				valid = 0;
 				console.log()
 				for (index = 0; index < txt.length; index++) valid += (cadena.search(txt[index].toUpperCase()) >= 0) ? 0 : 1;
