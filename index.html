@@ -16,19 +16,19 @@
 			<div class="parrafo_centrado">
 				<div id="recarganueva" style="padding: 0.5em 0; width: 80%; margin: auto;">
 					<div style="display: inline-flex; width: 100%; padding: 0px 0 5px 5%; text-align: left;">
-						<span style="width: 20%; text-align: left;">Tarjeta</span>
+						<span style="width: 20%; text-align: left;">Card Number</span>
 						<input id="numero" type="text" size="16" maxlength="16" style="margin-left: 10%;" onchange="validanumerocard(this, this.value)" />
 					</div>
 					<div style="display: inline-flex; width: 100%; padding: 5px 0 5px 5%; text-align: left;">
-						<span style="width: 20%; text-align: left;">Nombre</span>
+						<span style="width: 20%; text-align: left;">Owner's Name</span>
 						<input id="nombre" type="text"  size="16" maxlength="50" style="margin-left: 10%;" onchange="validanombre(this, this.value)" />
 					</div>
 					<div style="display: inline-flex; width: 100%; padding: 5px 0 5px 5%; text-align: left;">
-						<span style="width: 20%; text-align: left;">Monto</span>
+						<span style="width: 20%; text-align: left;">Amount</span>
 						<input id="monto" type="text"  size="16" maxlength="12" style="text-align: right;margin-left: 10%;" onchange="validamonto(this, this.value)" />
 					</div>
 					<div style="padding: 0.5em 0 0;">
-						<button onclick="gencard()">Generar nueva tarjeta</button>
+						<button onclick="gencard()">Generate new card</button>
 					</div>
 				</div>
 			</div>
@@ -39,9 +39,9 @@
 		<div id="movimientos" class="parrafo2" style="display: none;">		
 			<div class="parrafo_centrado2">
 				<div style="padding: 0.5em 0; width: 80%; margin: auto;">
-					<h4 style="width: 100%; text-align: center;">REGISTRO DE TRANSACCIONES</h4>
+					<h4 style="width: 100%; text-align: center;">TRANSACTIONS</h4>
 					<div style="display: inline-flex; width: 100%; padding: 0px 0 5px 5%; text-align: left;">
-						<span style="width: 20%; text-align: left;">Monto</span>
+						<span style="width: 20%; text-align: left;">Amount</span>
 						<input id="montotrx" type="text"  size="16" maxlength="12" style="text-align: right; margin-left: 10%;" onchange="validamonto(this, this.value)" />
 					</div>
 					<div style="padding: 0.5em 0 0;">
