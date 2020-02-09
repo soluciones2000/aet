@@ -36,7 +36,7 @@ class Card {
     month = (month < 10) ? '0'+month : month ;
     let year = fecha.getFullYear()+1;
     let cfecha = month+'/'+year;
-    this.validez = "Valida hasta: "+cfecha;
+    this.validez = "Valid thru: "+cfecha;
     this.icongft = (tipocrd=='giftcard') ? "./ico.jpg" : "./monedas.png";
     this.saldo = parseFloat(monto);
   }
@@ -165,7 +165,7 @@ class Card {
   }
 
   refrescaSaldo() {
-    saldoTarjeta.innerHTML = "Saldo: "+formatNumber.new(this.saldo);
+    saldoTarjeta.innerHTML = "Balance: "+formatNumber.new(this.saldo);
   }
 
   actualizaSaldo(monto) {
