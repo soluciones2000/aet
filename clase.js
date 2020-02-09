@@ -135,7 +135,7 @@ class Card {
                 let saldo = document.createElement("span");
                 saldo.id = 'saldoTarjeta';
                 saldo.style.fontSize = '120%';
-                let txtsaldo = document.createTextNode('Saldo: '+formatNumber.new(this.saldo));
+                let txtsaldo = document.createTextNode('Balance: '+formatNumber.new(this.saldo));
                 saldo.appendChild(txtsaldo);
                 area_qr.appendChild(saldo);
 
