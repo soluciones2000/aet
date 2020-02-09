@@ -106,9 +106,11 @@ async function recargar() {
       // msj2.style.display = 'none';
       msj2.innerHTML = '';
       montotrx.value = '';
+      montotrx.focus();
     }).catch((e) => {
       // msj2.style.display = 'block';
       msj2.innerHTML = 'Transaction not confirmed, card balance was not recharged.';
+      montotrx.focus();
     });
   }
 }
@@ -123,14 +125,15 @@ async function consumir() {
         card1.actualizaSaldo(trx*-1);
         msj2.innerHTML = '';
         montotrx.value = '';
+        montotrx.focus();
       }).catch((e) => {
         msj2.innerHTML = 'Transaction not confirmed, consumption was not recorded.';
+        montotrx.focus();
       });
     } else {
       msj2.innerHTML = 'The amount of consumption exceeds the available balance';
       montotrx.value = '';
       montotrx.focus();
     }
-
   }
 }
