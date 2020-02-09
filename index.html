@@ -62,8 +62,8 @@
 				valid = 0;
 				for (index = 0; index < txt.length; index++) valid += (cadena.search(txt[index]) >= 0) ? 0 : 1;
 				if (valid>0) {
-					alert('Este campo sólo debe contener numeros.');
-					msj1.innerHTML = 'El campo tarjeta sólo debe contener numeros.';
+					alert('This field only accept numbers.');
+					msj1.innerHTML = 'The field Number only accept numbers.';
 					cmp.value = '';
 					cmp.focus();
 					lret = false;
@@ -71,8 +71,8 @@
 					msj1.innerHTML = '';
 				}
 			} else {
-				alert('Este campo no se puede dejar en blanco.');
-				msj1.innerHTML = 'El campo tarjeta no se puede dejar en blanco.';
+				alert('This field cannot be left blank.');
+				msj1.innerHTML = 'Thi field Number cannot be left blank.';
 				cmp.value = '';
 				cmp.focus();
 				lret = false;
@@ -89,17 +89,17 @@
 				console.log()
 				for (index = 0; index < txt.length; index++) valid += (cadena.search(txt[index].toUpperCase()) >= 0) ? 0 : 1;
 				if (valid>0) {
-					alert('Este campo sólo debe contener letras o números sin caracteres especiales.');
+					alert('This field should only contain letters or numbers without special characters..');
 					cmp.value = '';
 					cmp.focus();
 					lret = false;
-					msj1.innerHTML = 'El campo nombre sólo debe contener letras o números sin caracteres especiales.';
+					msj1.innerHTML = 'The field Name should only contain letters or numbers without special characters.';
 				} else {
 					msj1.innerHTML = '';
 				}
 			} else {
-				alert('Este campo no se puede dejar en blanco.');
-				msj1.innerHTML = 'El campo nombre no se puede dejar en blanco.';
+				alert('This field cannot be left blank.');
+				msj1.innerHTML = 'Thi field Name cannot be left blank.';
 				cmp.value = '';
 				cmp.focus();
 				lret = false;
@@ -119,28 +119,28 @@
 					if (txt[index] == ".") punto++;
  				}
 				if (valid>0) {
-					alert('Este campo sólo debe contener numeros y/o un punto decimal (.)');
+					alert('This field should only contain numbers and / or a decimal point(.)');
 					cmp.value = '';
 					cmp.focus();
 					lret = false;
-					msj1.innerHTML = 'El campo monto sólo debe contener numeros y/o un punto decimal (.)';
-					msj2.innerHTML = 'El campo monto sólo debe contener numeros y/o un punto decimal (.)';
+					msj1.innerHTML = 'The field Amount should only contain numbers and / or a decimal point (.)';
+					msj2.innerHTML = 'The field Amount should only contain numbers and / or a decimal point (.)';
 				} else {
 					if (punto>1) {
-						alert('Número mal escrito, sólo puede haber un sólo punto decimal (.)');
+						alert('Badly written number, there can only be one decimal point(.)');
 						cmp.value = '';
 						cmp.focus();
 						lret = false;
-						msj1.innerHTML = 'Número mal escrito, sólo puede haber un sólo punto decimal (.)';
-						msj2.innerHTML = 'Número mal escrito, sólo puede haber un sólo punto decimal (.)';
+						msj1.innerHTML = 'Badly written number, there can only be one decimal point (.)';
+						msj2.innerHTML = 'Badly written number, there can only be one decimal point (.)';
 					} else {
 						msj1.innerHTML = '';
 						msj2.innerHTML = '';
 					}
 				}
 			} else {
-				alert('Este campo no se puede dejar en blanco.');
-				msj1.innerHTML = 'El campo monto no se puede dejar en blanco.';
+				alert('This field cannot be left blank.');
+				msj1.innerHTML = 'The field Amount cannot be left blank.';
 				cmp.value = '';
 				cmp.focus();
 				lret = false;
