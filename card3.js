@@ -76,7 +76,7 @@ async function cardnew(numero,nombre,monto) {
   monto = parseFloat(monto);
   generacard(numero,nombre,monto);
   // msj1.style.display = 'block';
-  msj1.innerHTML = 'Generando tarjeta, por favor espere...';
+  msj1.innerHTML = 'Generando tarjeta, por favor espere...'; //Generating card, please wait ...
   //Make the contract call to register the card with the newly passed values
   await contractCall('recarga_inicial', [card1.idcard, card1.nombres, monto], 0)
   .then(() => {
@@ -89,7 +89,7 @@ async function cardnew(numero,nombre,monto) {
   }).catch((e) => {
     comienzo.style.display = 'flex';
     // msj1.style.display = 'block';
-    msj1.innerHTML = 'Transacción no confirmada, tarjeta no generada.';
+    msj1.innerHTML = 'Transacción no confirmada, tarjeta no generada.'; //Transaction not confirmed, card not generated.
     movimientos.style.display = 'none';
   });
 }
@@ -125,9 +125,12 @@ async function consumir() {
         montotrx.value = '';
       }).catch((e) => {
         msj2.innerHTML = 'Transacción no confirmada, no se registró el consumo.';
+
+        // Transaction not confirmed, consumption was not recorded.
       });
     } else {
       msj2.innerHTML = 'El monto del consumo supera el saldo disponible';
+      // The amount of consumption exceeds the available balance
       montotrx.value = '';
       montotrx.focus();
     }
@@ -135,54 +138,3 @@ async function consumir() {
   }
 }
 
-// async function inicio() {
-//   const client = await Ae.Aepp();
-// }
-
-// //Execute main function
-// window.addEventListener('load', async () => {
-//   //Initialize the Aepp object through aepp-sdk.browser.js, the base app needs to be running.
-//   client = await Ae.Aepp();
-// });
-
-// //If someone clicks to vote on a meme, get the input and execute the voteCall
-// jQuery("#memeBody").on("click", ".voteBtn", async function(event){
-//   $("#loader").show();
-//   //Create two new let block scoped variables, value for the vote input and
-//   //index to get the index of the meme on which the user wants to vote
-//   let value = $(this).siblings('input').val(),
-//       index = event.target.id;
-
-//   //Promise to execute execute call for the vote meme function with let values
-//   await contractCall('voteMeme', [index], value);
-
-//   //Hide the loading animation after async calls return a value
-//   const foundIndex = memeArray.findIndex(meme => meme.index == event.target.id);
-//   //console.log(foundIndex);
-//   memeArray[foundIndex].votes += parseInt(value, 10);
-
-//   renderMemes();
-//   $("#loader").hide();
-// });
-
-// //If someone clicks to register a meme, get the input and execute the registerCall
-// $('#registerBtn').click(async function(){
-//   $("#loader").show();
-//   //Create two new let variables which get the values from the input fields
-//   const name = ($('#regName').val()),
-//         url = ($('#regUrl').val());
-
-//   //Make the contract call to register the meme with the newly passed values
-//   await contractCall('registerMeme', [url, name], 0);
-
-//   //Add the new created memeobject to our memearray
-//   memeArray.push({
-//     creatorName: name,
-//     memeUrl: url,
-//     index: memeArray.length+1,
-//     votes: 0,
-//   })
-
-//   renderMemes();
-//   $("#loader").hide();
-// });
