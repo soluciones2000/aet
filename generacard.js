@@ -11,7 +11,4 @@ function generacard(tarjeta,nombre,monto) {
         nombre,
         monto
     );
-
-    // card1.dibuja('tarjeta');
-                    // card2.dibuja('tarjetero');
 }

@@ -1,7 +1,7 @@
-// Función para mostrar los decimales que se quieran
+// Function to show the decimals you want
 var formatNumber = {
-    separador: ".", // separador para los miles
-    sepDecimal: ',', // separador para los decimales
+    separador: ".", // thousands
+    sepDecimal: ',', // decimals
     formatear: function (num) {
         num += '';
         var splitStr = num.split('.');
@@ -22,12 +22,12 @@ var formatNumber = {
 
 class Card {
   constructor(idcard, imgprov, tipocrd, cnumber, nombres, monto) {
-    // Inicializa variables
+    // Initialize variables
     this.padre = '';
     this.idcard = idcard;
     this.imgprov = imgprov;
     this.tipocrd = tipocrd;
-    this.msjtipo = (tipocrd=='giftcard') ? 'Tarjeta de regalo' : 'Tarjeta prepagada';
+    this.msjtipo = (tipocrd=='giftcard') ? 'Gift card' : 'Prepaid card';
     this.cnumber = cnumber;
     this.numcard = cnumber.substr(0,4)+' '+cnumber.substr(4,4)+' '+cnumber.substr(8,4)+' '+cnumber.substr(12,4);
     this.nombres = nombres;
@@ -35,7 +35,6 @@ class Card {
     let month = fecha.getMonth()+1;
     month = (month < 10) ? '0'+month : month ;
     let year = fecha.getFullYear()+1;
-    // console.log(fecha);
     let cfecha = month+'/'+year;
     this.validez = "Valida hasta: "+cfecha;
     this.icongft = (tipocrd=='giftcard') ? "./ico.jpg" : "./monedas.png";
@@ -44,12 +43,12 @@ class Card {
 
   dibuja(padre) {
     this.padre = padre;
-    // Crea objetos
-    // Variables auxiliares
+    // Create objects
+    // auxiliars variables
     const ancho = '340px';
-    // alto es el ancho por .65
+    // height is width * .65
     const alto = '221px';
-    // Crear base de la tarjeta
+    // Create card base
     let card = document.createElement("div");
     card.id = this.idcard;
     card.style.width = ancho;
@@ -65,14 +64,14 @@ class Card {
     card.style.color = (this.tipocrd=='prepago') ? 'white' : 'black' ;
     card.style.border = (this.tipocrd=='prepago') ? 'solid 2px white' : 'solid 2px black' ;
 
-        // Crear borde de la tarjeta
+        // border
         let card2 = document.createElement("div");
         card2.style.border = (this.tipocrd=='prepago') ? 'solid 2px white' : 'solid 2px black' ;
         card2.style.margin = '5px';
         card2.style.borderRadius = '5%';
         card2.style.height = '94%';
 
-            // Crear area del logo y logo
+            // logo and logo area
             let area_logo = document.createElement("div");
             area_logo.style.width = '30%';
             area_logo.style.height = '20%';
@@ -86,28 +85,28 @@ class Card {
                 img_logo.src = this.imgprov;
             area_logo.appendChild(img_logo);
 
-            // Crear cuerpo de la tarjeta
+            // card body
             let cuerpo = document.createElement("div");
             cuerpo.style.display = 'flex';
             cuerpo.style.flexDirection = 'column';
             cuerpo.style.alignItems = 'flex-end';
             cuerpo.style.marginRight = '7.5px';
-                // tipo
+                // type
                 let tipo = document.createElement("span");
                 tipo.style.fontSize = '100%';
                 let txttipo = document.createTextNode(this.msjtipo);
                 tipo.appendChild(txttipo);
-                // numero
+                // number
                 let numero = document.createElement("span");
                 numero.style.fontSize = '120%';
                 let txtnumero = document.createTextNode(this.numcard);
                 numero.appendChild(txtnumero);
-                // nombre
+                // name
                 let nombre = document.createElement("span");
                 nombre.style.fontSize = '100%';
                 let txtnombre = document.createTextNode(this.nombres);
                 nombre.appendChild(txtnombre);
-                // valida
+                // expire date
                 let valida = document.createElement("span");
                 valida.style.fontSize = '80%';
                 let txtvalida = document.createTextNode(this.validez);
@@ -118,21 +117,21 @@ class Card {
             cuerpo.appendChild(nombre);
             cuerpo.appendChild(valida);
 
-            // Parte baja de la tarjeta
+            // downpart card
             let debajo = document.createElement("div");
             debajo.style.display = 'flex';
             debajo.style.flexDirection = 'row';
             debajo.style.justifyContent = 'space-between';
             debajo.style.marginTop = '-3%';
             debajo.style.height = '40%';
-                // Área del QR
+                // QR area
                 let area_qr = document.createElement("div");
                 area_qr.style.width = '25%';
                 area_qr.style.height = 'auto';
                 area_qr.style.position = 'relative';
                 area_qr.style.bottom = '-25px';
                 area_qr.style.padding = '0 0 2% 15%';
-                // saldo
+                // balance
                 let saldo = document.createElement("span");
                 saldo.id = 'saldoTarjeta';
                 saldo.style.fontSize = '120%';
@@ -140,12 +139,7 @@ class Card {
                 saldo.appendChild(txtsaldo);
                 area_qr.appendChild(saldo);
 
-                //     let codigo_qr = document.createElement("img");
-                //     codigo_qr.style.width = '95%';
-                //     codigo_qr.style.height = 'auto';
-                //     codigo_qr.src = this.code_qr;
-                // area_qr.appendChild(codigo_qr);
-                // Ícono de giftcard
+                // giftcard icon 
                 let area_ico = document.createElement("div");
                 area_ico.style.width = '15%';
                 area_ico.style.height = 'auto';
@@ -160,44 +154,18 @@ class Card {
             debajo.appendChild(area_qr);
             debajo.appendChild(area_ico);
 
-            // // Pie de la tarjeta
-            // let pie = document.createElement("div");
-            // pie.style.width = '100%';
-            // pie.style.textAlign = 'center';
-            // pie.style.fontSize = '55%';
-            // pie.style.marginTop = '0.5em';
-            //     let mensaje = document.createElement("span");
-            //     // let txtmensaje = document.createTextNode('Tarjeta generada por SGC Consultores C.A. ');
-            //     let url = document.createElement("a");
-            //     url.href = "https://www.sgc-consultores.com.ve";
-            //     url.style.textDecoration = 'none';
-            //     url.style.color = 'black';
-            //     let txturl = document.createTextNode('Tarjeta generada por SGC Consultores C.A.');
-            //     let txtur2 = document.createTextNode(' - ');
-            //     let txtur3 = document.createTextNode('www.sgc-consultores.com.ve');
-            //     // let txturl = document.createTextNode('Tarjeta generada por SGC Consultores C.A.');
-            //     // mensaje.appendChild(txtmensaje);
-            //     url.appendChild(txturl);
-            //     url.appendChild(txtur2);
-            //     url.appendChild(txtur3);
-            //     mensaje.appendChild(url);
-            // pie.appendChild(mensaje);
-
         card2.appendChild(area_logo);
         card2.appendChild(cuerpo);
         card2.appendChild(debajo);
     card.appendChild(card2);
 
-    // return this;
-
-    // Coloca la tarjeta donde se llame
+    // Place card where wal called
     document.getElementById(this.padre).appendChild(card);
-    document.getElementById(this.padre).style.display = 'block';
-    // document.getElementById(this.padre).appendChild(pie);
+    document.getElementById(this.padre).style.display = "block";
   }
 
   refrescaSaldo() {
-    saldoTarjeta.innerHTML = 'Saldo: '+formatNumber.new(this.saldo);
+    saldoTarjeta.innerHTML = "Saldo: "+formatNumber.new(this.saldo);
   }
 
   actualizaSaldo(monto) {
